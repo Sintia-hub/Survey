@@ -1,0 +1,20 @@
+﻿@model IEnumerable<Survey.Models.UserSurvey>
+@{
+    ViewData["Title"] = "Survey Results";
+}
+<h2>Survey Results</h2>
+@if (ViewBag.Message != null)
+{
+    <p>@ViewBag.Message</p>
+}
+else
+{
+    <ul>
+        <li><strong>Total Surveys:</strong> @ViewBag.TotalSurveys</li>
+        <li><strong>Average Age:</strong> @Math.Round((double)ViewBag.AvgAge, 1)</li>
+        <li><strong>Oldest Age:</strong> @ViewBag.Oldest</li>
+        <li><strong>Youngest Age:</strong> @ViewBag.Youngest</li>
+        <li><strong>Pizza Lovers %:</strong> @Math.Round((double)ViewBag.PizzaPercentage, 1)%</li>
+        <li><strong>Average Eat Out Rating:</strong> @Math.Round((double)ViewBag.AvgEatOut, 1)</li>
+    </ul>
+}
