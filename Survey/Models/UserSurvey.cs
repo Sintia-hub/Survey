@@ -25,8 +25,7 @@ namespace Survey.Models
         public bool LikesPizza { get; set; }
         public bool LikesPasta { get; set; }
         public bool LikesPapAndWors { get; set; }
-        public bool LikesChickenStirFry { get; set; }
-        public bool LikesBeefStirFry { get; set; }
+        
         public bool LikesOther { get; set; }
 
         // Ratings (1 to 5)

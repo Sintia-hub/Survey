@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Fill Out Survey";
 }
-<h2>Fill Out Survey</h2>
+<h2>_Surveys</h2>
 <form asp-action="Create" method="post">
     <div class="form-group">
         <label asp-for="FullName"></label>
@@ -25,7 +25,7 @@
         <span asp-validation-for="DateOfBirth" class="text-danger"></span>
     </div>
     <fieldset>
-        <legend>Favourite Foods</legend>
+        <legend>What is your favourite food?</legend>
         <div class="form-check">
             <input asp-for="LikesPizza" class="form-check-input" />
             <label asp-for="LikesPizza" class="form-check-label">Pizza</label>
@@ -39,47 +39,39 @@
             <label asp-for="LikesPapAndWors" class="form-check-label">Pap and Wors</label>
         </div>
         <div class="form-check">
-            <input asp-for="LikesChickenStirFry" class="form-check-input" />
-            <label asp-for="LikesChickenStirFry" class="form-check-label">Chicken Stir Fry</label>
-        </div>
-        <div class="form-check">
-            <input asp-for="LikesBeefStirFry" class="form-check-input" />
-            <label asp-for="LikesBeefStirFry" class="form-check-label">Beef Stir Fry</label>
-        </div>
-        <div class="form-check">
             <input asp-for="LikesOther" class="form-check-input" />
             <label asp-for="LikesOther" class="form-check-label">Other</label>
         </div>
     </fieldset>
 
     <fieldset>
-        <legend>Rate the Following (1 to 5)</legend>
+        <legend>Please rate your level of agreement on a scale from 1 to 5, with 1 being 'Strongly Agree' and 5 being 'Strongly disagree'.</legend>
         @for (int i = 1; i <= 5; i++)
         {
             <div class="form-group">
-                <label>Eat Out</label>
-                <input type="radio" name="EatOutRating" value="@i" /> @i
-            </div>
-        }
-        @for (int i = 1; i <= 5; i++)
-        {
-            <div class="form-group">
-                <label>Watch Movies</label>
+                <label>I like to watch movies</label>
                 <input type="radio" name="WatchMoviesRating" value="@i" /> @i
             </div>
         }
         @for (int i = 1; i <= 5; i++)
         {
             <div class="form-group">
-                <label>Watch TV</label>
-                <input type="radio" name="WatchTVRating" value="@i" /> @i
+                <label>I like to listen to radio</label>
+                <input type="radio" name="ListenToRadioRating" value="@i" /> @i
             </div>
         }
         @for (int i = 1; i <= 5; i++)
         {
             <div class="form-group">
-                <label>Listen to Radio</label>
-                <input type="radio" name="ListenToRadioRating" value="@i" /> @i
+                <label>I like to eat out</label>
+                <input type="radio" name="EatOutRating" value="@i" /> @i
+            </div>
+        }
+        @for (int i = 1; i <= 5; i++)
+        {
+            <div class="form-group">
+                <label>I like to watch TV</label>
+                <input type="radio" name="WatchTVRating" value="@i" /> @i
             </div>
         }
     </fieldset>

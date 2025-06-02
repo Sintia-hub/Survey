@@ -22,8 +22,6 @@ namespace Survey.Services
                 LikesPizza = model.LikesPizza,
                 LikesPasta = model.LikesPasta,
                 LikesPapAndWors = model.LikesPapAndWors,
-                LikesChickenStirFry = model.LikesChickenStirFry,
-                LikesBeefStirFry = model.LikesBeefStirFry,
                 LikesOther = model.LikesOther,
                 EatOutRating = model.EatOutRating,
                 WatchMoviesRating = model.WatchMoviesRating,
