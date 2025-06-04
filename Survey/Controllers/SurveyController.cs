@@ -21,27 +21,59 @@ namespace Survey.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(SurveyViewModel model)
         {
-            if (!ModelState.IsValid)
-                return View(model);
+            if (ModelState.IsValid)
+            {
+                int age = CalculateAge(model.DateOfBirth);
+                if (age < 5 || age > 120)
+                {
+                    ModelState.AddModelError("DateOfBirth", "Age must be between 5 and 120 years.");
+                    return View(model);
+                }
 
-            await _surveyService.AddSurveyAsync(model);
-            return RedirectToAction("Summary");
+                await _surveyService.AddSurveyAsync(model);
+                return RedirectToAction("Summary");
+            }
+
+            return View(model);
         }
 
         public async Task<IActionResult> Summary()
         {
             var surveys = await _surveyService.GetAllSurveysAsync();
-            if (surveys.Count == 0)
-                ViewBag.Message = "No Surveys Available.";
-
             ViewBag.TotalSurveys = surveys.Count;
-            ViewBag.AvgAge = surveys.Average(s => s.Age);
-            ViewBag.Oldest = surveys.Max(s => s.Age);
-            ViewBag.Youngest = surveys.Min(s => s.Age);
-            ViewBag.PizzaPercentage = surveys.Count(s => s.LikesPizza) * 100.0 / surveys.Count;
-            ViewBag.AvgEatOut = surveys.Average(s => s.EatOutRating);
+
+            if (!surveys.Any())
+            {
+                ViewBag.Message = "No Surveys Available.";
+            }
+            else
+            {
+                var ages = surveys.Select(s => CalculateAge(s.DateOfBirth)).ToList();
+                ViewBag.AvgAge = ages.Average();
+                ViewBag.Oldest = ages.Max();
+                ViewBag.Youngest = ages.Min();
+
+                ViewBag.PizzaPercentage = surveys.Count(s => s.LikesPizza) * 100.0 / surveys.Count;
+                ViewBag.PastaPercentage = surveys.Count(s => s.LikesPasta) * 100.0 / surveys.Count;
+                ViewBag.PapAndWorsPercentage = surveys.Count(s => s.LikesPapAndWors) * 100.0 / surveys.Count;
+
+                ViewBag.AvgMovies = surveys.Average(s => s.WatchMoviesRating);
+                ViewBag.AvgRadio = surveys.Average(s => s.ListenToRadioRating);
+                ViewBag.AvgEatOut = surveys.Average(s => s.EatOutRating);
+                ViewBag.AvgTV = surveys.Average(s => s.WatchTVRating);
+            }
 
             return View(surveys);
         }
+        private int CalculateAge(DateTime dob)
+        {
+            var today = DateTime.Today;
+            var age = today.Year - dob.Year;
+            if (dob.Date > today.AddYears(-age)) age--;
+            return age;
+        }
+
+       
+
     }
 }

@@ -1,6 +1,4 @@
-﻿
-
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Survey.Models
 {
@@ -14,8 +12,8 @@ namespace Survey.Models
         public string Email { get; set; } = "";
 
         [Required]
-        [Range(5, 120)]
-        public int Age { get; set; }
+        [Phone]
+        public string ContactNumber { get; set; } = "";
 
         [Required]
         [DataType(DataType.Date)]
@@ -25,7 +23,7 @@ namespace Survey.Models
         public bool LikesPizza { get; set; }
         public bool LikesPasta { get; set; }
         public bool LikesPapAndWors { get; set; }
-        
+
         public bool LikesOther { get; set; }
 
         // Ratings (1 to 5)

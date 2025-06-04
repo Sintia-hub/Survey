@@ -17,16 +17,15 @@ namespace Survey.Services
             {
                 FullName = model.FullName,
                 Email = model.Email,
-                Age = model.Age,
                 DateOfBirth = model.DateOfBirth,
                 LikesPizza = model.LikesPizza,
                 LikesPasta = model.LikesPasta,
                 LikesPapAndWors = model.LikesPapAndWors,
                 LikesOther = model.LikesOther,
-                EatOutRating = model.EatOutRating,
-                WatchMoviesRating = model.WatchMoviesRating,
-                WatchTVRating = model.WatchTVRating,
-                ListenToRadioRating = model.ListenToRadioRating
+                EatOutRating = model.EatOutRating ?? 0,
+                WatchMoviesRating = model.WatchMoviesRating ?? 0,
+                WatchTVRating = model.WatchTVRating ?? 0,
+                ListenToRadioRating = model.ListenToRadioRating ?? 0
             };
 
             _context.Surveys.Add(survey);

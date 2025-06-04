@@ -12,6 +12,8 @@ builder.Services.AddScoped<ISurveyService, SurveyService>();
 builder.Services.AddControllersWithViews();
 
 
+builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -29,8 +31,15 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+app.MapGet("/", context =>
+{
+    context.Response.Redirect("/Survey/Create");
+    return Task.CompletedTask;
+});
+
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    //pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Survey}/{action=Create}/{id?}");
 
 app.Run();

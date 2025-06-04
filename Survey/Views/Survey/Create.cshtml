@@ -2,81 +2,176 @@
 @{
     ViewData["Title"] = "Fill Out Survey";
 }
-<h2>_Surveys</h2>
-<form asp-action="Create" method="post">
-    <div class="form-group">
-        <label asp-for="FullName"></label>
-        <input asp-for="FullName" class="form-control" />
-        <span asp-validation-for="FullName" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Email"></label>
-        <input asp-for="Email" class="form-control" />
-        <span asp-validation-for="Email" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Age"></label>
-        <input asp-for="Age" class="form-control" />
-        <span asp-validation-for="Age" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="DateOfBirth"></label>
-        <input asp-for="DateOfBirth" class="form-control" type="date" />
-        <span asp-validation-for="DateOfBirth" class="text-danger"></span>
-    </div>
-    <fieldset>
-        <legend>What is your favourite food?</legend>
-        <div class="form-check">
-            <input asp-for="LikesPizza" class="form-check-input" />
-            <label asp-for="LikesPizza" class="form-check-label">Pizza</label>
-        </div>
-        <div class="form-check">
-            <input asp-for="LikesPasta" class="form-check-input" />
-            <label asp-for="LikesPasta" class="form-check-label">Pasta</label>
-        </div>
-        <div class="form-check">
-            <input asp-for="LikesPapAndWors" class="form-check-input" />
-            <label asp-for="LikesPapAndWors" class="form-check-label">Pap and Wors</label>
-        </div>
-        <div class="form-check">
-            <input asp-for="LikesOther" class="form-check-input" />
-            <label asp-for="LikesOther" class="form-check-label">Other</label>
-        </div>
-    </fieldset>
 
-    <fieldset>
-        <legend>Please rate your level of agreement on a scale from 1 to 5, with 1 being 'Strongly Agree' and 5 being 'Strongly disagree'.</legend>
-        @for (int i = 1; i <= 5; i++)
-        {
-            <div class="form-group">
-                <label>I like to watch movies</label>
-                <input type="radio" name="WatchMoviesRating" value="@i" /> @i
-            </div>
-        }
-        @for (int i = 1; i <= 5; i++)
-        {
-            <div class="form-group">
-                <label>I like to listen to radio</label>
-                <input type="radio" name="ListenToRadioRating" value="@i" /> @i
-            </div>
-        }
-        @for (int i = 1; i <= 5; i++)
-        {
-            <div class="form-group">
-                <label>I like to eat out</label>
-                <input type="radio" name="EatOutRating" value="@i" /> @i
-            </div>
-        }
-        @for (int i = 1; i <= 5; i++)
-        {
-            <div class="form-group">
-                <label>I like to watch TV</label>
-                <input type="radio" name="WatchTVRating" value="@i" /> @i
-            </div>
-        }
-    </fieldset>
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+<style>
+    input[type="text"],
+    input[type="email"],
+    input[type="date"],
+    input[type="number"],
+    input[type="tel"],
+    select {
+        border: 1px solid #007bff;
+        
+    }
+
+    input[type="checkbox"]
+    {
+        border: 1px solid #007bff;
+    }
+    
+    tbody {
+        border-color: #007bff;
+    }
+
+    th {
+        border-color: Black;
+    }
+    
+</style>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <form asp-action="Create" method="post" class="bg-white p-3">
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                <div class="row mb-4">
+                    <div class="col-sm-3 pt-2">Personal Details :</div>
+                    <div class="col-sm-3">
+                        <div class="mb-4">
+                            <label asp-for="FullName" class="form-label">Full Names</label>
+                            <input asp-for="FullName" class="form-control" />
+                            <span asp-validation-for="FullName" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Email" class="form-label">Email</label>
+                            <input asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="DateOfBirth" class="form-label">Date of Birth</label>
+                            <input asp-for="DateOfBirth" type="date" class="form-control" />
+                            <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="ContactNumber" class="form-label">Contact Number</label>
+                            <input asp-for="ContactNumber" class="form-control" />
+                            <span asp-validation-for="ContactNumber" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-sm-3 pt-2">What is your favorite food?</div>
+                    <div class="col-sm-9">
+                        <div class="form-check form-check-inline">
+                            <input asp-for="LikesPizza" class="form-check-input" />
+                            <label asp-for="LikesPizza" class="form-check-label">Pizza</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input asp-for="LikesPasta" class="form-check-input" />
+                            <label asp-for="LikesPasta" class="form-check-label">Pasta</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input asp-for="LikesPapAndWors" class="form-check-input" />
+                            <label asp-for="LikesPapAndWors" class="form-check-label">Pap and Wors</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input asp-for="LikesOther" class="form-check-input" />
+                            <label asp-for="LikesOther" class="form-check-label">Other</label>
+                        </div>
+                    </div>
+                </div>
+
+                <fieldset class="mb-4">
+                    <p>
+                        Please rate your level of agreement on a scale from 1 to 5,
+                        with 1 being "Strongly Agree" and 5 being "Strongly Disagree."
+                    </p>
+                    <!-- Rating Table -->
+                    <table class="table table-sm table-bordered text-center align-middle w-100">
+                        <colgroup>
+                            <col style="width: 20%;" />
+                            <col style="width: 16%;" />
+                            <col style="width: 16%;" />
+                            <col style="width: 16%;" />
+                            <col style="width: 16%;" />
+                            <col style="width: 16%;" />
+                        </colgroup>
+                        <thead class="table-secondary">
+                            <tr>
+                                <th></th>
+                                <th>Strongly Agree</th>
+                                <th>Agree</th>
+                                <th>Neutral</th>
+                                <th>Disagree</th>
+                                <th>Strongly Disagree</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-start">I like to watch movies</td>
+                                @for (int i = 1; i <= 5; i++)
+                                {
+                                    @* <td><input type="radio" name="WatchMoviesRating" value="@i" /></td> *@
+                                    <td>
+                                        <input type="radio"
+                                               asp-for="WatchMoviesRating"
+                                               value="@i"
+                                               class="form-check-input @(ViewData.ModelState["WatchMoviesRating"]?.Errors.Count > 0 ? "is-invalid" : "")" />
+                                    </td>
+                                }
+                            </tr>
+                            <tr>
+                                <td class="text-start">I like to listen to radio</td>
+                                @for (int i = 1; i <= 5; i++)
+                                {
+                                    @*  <td><input type="radio" name="ListenToRadioRating" value="@i" /></td> *@
+                                    <td>
+                                        <input type="radio"
+                                               asp-for="ListenToRadioRating"
+                                               value="@i"
+                                               class="form-check-input @(ViewData.ModelState["ListenToRadioRating"]?.Errors.Count > 0 ? "is-invalid" : "")" />
+                                    </td>
+                                }
+                            </tr>
+                            <tr>
+                                <td class="text-start">I like to eat out</td>
+                                @for (int i = 1; i <= 5; i++)
+                                {
+                                    @* <td><input type="radio" name="EatOutRating" value="@i" /></td> *@
+                                    <td>
+                                        <input type="radio"
+                                               asp-for="EatOutRating"
+                                               value="@i"
+                                               class="form-check-input @(ViewData.ModelState["EatOutRating"]?.Errors.Count > 0 ? "is-invalid" : "")" />
+
+                                    </td>
+                                }
+                            </tr>
+                            <tr>
+                                <td class="text-start">I like to watch TV</td>
+                                @for (int i = 1; i <= 5; i++)
+                                {
+                                    @* <td><input type="radio" name="WatchTVRating" value="@i" /></td> *@
+                                    <td>
+                                        <input type="radio"
+                                               asp-for="WatchTVRating"
+                                               value="@i"
+                                               class="form-check-input @(ViewData.ModelState["WatchTVRating"]?.Errors.Count > 0 ? "is-invalid" : "")" />
+                                    </td>
+                                }
+                            </tr>
+                        </tbody>
+                    </table>
+                </fieldset>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary mt-3 px-5">SUBMIT</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");

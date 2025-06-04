@@ -2,19 +2,76 @@
 @{
     ViewData["Title"] = "Survey Results";
 }
-<h2>Survey Results</h2>
-@if (ViewBag.Message != null)
-{
-    <p>@ViewBag.Message</p>
-}
-else
-{
-    <ul>
-        <li><strong>Total Surveys:</strong> @ViewBag.TotalSurveys</li>
-        <li><strong>Average Age:</strong> @Math.Round((double)ViewBag.AvgAge, 1)</li>
-        <li><strong>Oldest Age:</strong> @ViewBag.Oldest</li>
-        <li><strong>Youngest Age:</strong> @ViewBag.Youngest</li>
-        <li><strong>Pizza Lovers %:</strong> @Math.Round((double)ViewBag.PizzaPercentage, 1)%</li>
-        <li><strong>Average Eat Out Rating:</strong> @Math.Round((double)ViewBag.AvgEatOut, 1)</li>
-    </ul>
-}
+
+<div class="container mt-5">
+    <h2 class="text-center mb-5">Survey Results</h2>
+
+    @if (ViewBag.Message != null)
+    {
+        <p class="text-center text-danger">@ViewBag.Message</p>
+    }
+    else
+    {
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+
+                <div class="d-flex justify-content-between mb-2">
+                    <div>Total number of surveys :</div>
+                    <div>@ViewBag.TotalSurveys</div>
+                </div>
+
+                <div class="d-flex justify-content-between mb-2">
+                    <div>Average Age :</div>
+                    <div>@Math.Round((double)ViewBag.AvgAge, 1)</div>
+                </div>
+
+                <div class="d-flex justify-content-between mb-2">
+                    <div>Oldest person who participated in survey :</div>
+                    <div>@ViewBag.Oldest</div>
+                </div>
+
+                <div class="d-flex justify-content-between mb-4">
+                    <div>Youngest person who participated in survey :</div>
+                    <div>@ViewBag.Youngest</div>
+                </div>
+
+                <div class="d-flex justify-content-between mb-2">
+                    <div>Percentage of people who like Pizza :</div>
+                    <div>@Math.Round((double)ViewBag.PizzaPercentage, 1)%</div>
+                </div>
+
+                <div class="d-flex justify-content-between mb-2">
+                    <div>Percentage of people who like Pasta :</div>
+                    <div>@Math.Round((double)ViewBag.PastaPercentage, 1)%</div>
+                </div>
+
+                <div class="d-flex justify-content-between mb-4">
+                    <div>Percentage of people who like Pap and Wors :</div>
+                    <div>@Math.Round((double)ViewBag.PapAndWorsPercentage, 1)%</div>
+                </div>
+
+                <div class="d-flex justify-content-between mb-2">
+                    <div>People who like to watch movies :</div>
+                    <div>@Math.Round((double)ViewBag.AvgMovies, 1)</div>
+                </div>
+
+                <div class="d-flex justify-content-between mb-2">
+                    <div>People who like to listen to radio :</div>
+                    <div>@Math.Round((double)ViewBag.AvgRadio, 1)</div>
+                </div>
+
+                <div class="d-flex justify-content-between mb-2">
+                    <div>People who like to eat out :</div>
+                    <div>@Math.Round((double)ViewBag.AvgEatOut, 1)</div>
+                </div>
+
+                <div class="d-flex justify-content-between mb-2">
+                    <div>People who like to watch TV :</div>
+                    <div>@Math.Round((double)ViewBag.AvgTV, 1)</div>
+                </div>
+
+            </div>
+        </div>
+    }
+</div>
+

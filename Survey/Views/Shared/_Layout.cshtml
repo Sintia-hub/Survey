@@ -10,29 +10,47 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-light bg-white  mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Survey</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+
+                <!-- Brand on the LEFT -->
+                <a class="navbar-brand  @(ViewContext.RouteData.Values["action"]?.ToString() == "Index" ? "active text-primary" : "text-dark")"
+                   asp-area="" asp-controller="Home" asp-action="Index">
+                    _Survey
+                </a>
+
+                <!-- Toggle Button for Mobile -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+                        aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+
+                <!-- Navigation Menu on the RIGHT -->
+                <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
+                    <ul class="navbar-nav pe-5">
+                        @*  <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Survey" asp-action="Create">Fill Out Survey</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Survey" asp-action="Summary">View Survey Results</a>
+                        </li> *@
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Survey" asp-action="Create">User Survey</a>
+                            <a class="nav-link @(ViewContext.RouteData.Values["action"]?.ToString() == "Create" ? "active text-primary" : "text-dark")"
+                               asp-area="" asp-controller="Survey" asp-action="Create">
+                                FILL OUT SURVEY
+                            </a>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Survey" asp-action="Summary">Summary</a>
+                            <a class="nav-link @(ViewContext.RouteData.Values["action"]?.ToString() == "Summary" ? "active text-primary" : "text-dark")"
+                               asp-area="" asp-controller="Survey" asp-action="Summary">
+                                VIEW SURVEY RESULTS
+                            </a>
                         </li>
+
                     </ul>
                 </div>
+
             </div>
         </nav>
     </header>
@@ -43,8 +61,8 @@
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2025 - Survey - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        <div class="container text-center">
+            &copy; 2025 - Survey 
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
